@@ -17,6 +17,8 @@ export default class AGVService {
   constructor(agv: AGV) {
     agv.connected = false;
     this.agv = agv;
+    // [TODO] 서비스마다 클라이언트 생성하지 않고
+    // 한 클라이언트가 토픽을 동적으로 관리하도록 수정
     this.mqttService = new MqttService(this.agv.id);
     this.robotState = new RobotState(this.agv.id);
     this.mqttService.onMessage((topic: string, payload: ArrayBuffer | Uint8Array | string) : void => {
@@ -38,6 +40,7 @@ export default class AGVService {
     // Pinia store 상태 동기화
     const agvStore = useRobotStateStore();
 
+    // [TODO] 삭제예정
     watch(() => this.mqttService._connected.value, (isConnected) => {
       this.robotState.connected = isConnected
       agvStore.updateRobotState(this.robotState)
@@ -60,7 +63,8 @@ export default class AGVService {
           this.robotState.X = gq.X;
           this.robotState.Y = gq.Y;
           this.robotState.H = gq.H;
-
+          // [TODO] Status 추가
+          // [고민] 서비스에선 RobotState 갖고있을 필요가 없을 것 같다 → Store에 데이터만 넘기도록?
           this.agvStore.updateRobotState(this.robotState);
         }
       }

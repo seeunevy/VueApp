@@ -7,6 +7,7 @@ const agvServices: Record<string, AGVService> = {};
 
 export const initializeServices = () => {
   agvIds.forEach((id) => {
+    // [TODO]: AGV 클래스 삭제 예정
     const agv = new AGV(id);
     const service = new AGVService(agv);
     agvServices[id] = service;
