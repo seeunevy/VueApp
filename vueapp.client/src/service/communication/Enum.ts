@@ -1,5 +1,5 @@
 enum EnCommandId {
-  GQ,
+  GQ = 'GQ',
 }
 enum EnStatus
 {

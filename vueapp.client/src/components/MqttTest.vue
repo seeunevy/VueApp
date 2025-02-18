@@ -5,7 +5,7 @@
       <h2>AGV {{ agv.id }} MQTT Status: {{ agv.connected ? '✅ Connected' : '❌ Disconnected' }}</h2>
         <button @click="connect(agv.id)">📡 Connect</button>
         <button @click="disconnect(agv.id)">📡 Disconnect</button>
-        <button @click="sendMessage(agv.id)">🚀 Publish</button>
+        <!--<button @click="sendMessage(agv.id)">🚀 Publish</button>-->
       </div>
     </div>
 </template>

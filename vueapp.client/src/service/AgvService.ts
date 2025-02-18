@@ -5,7 +5,7 @@ import { watch } from 'vue';
 import { MqttService } from '@/service/communication/MqttService';
 import { useRobotStateStore } from '@/store/robotState';
 import { EnCommandId } from './communication/Enum';
-import { ResponseGQ } from './communication/Message-Response';
+import ResponseGQ from './communication/Message-Response';
 
 export default class AGVService {
   private agv: AGV;
@@ -19,7 +19,7 @@ export default class AGVService {
     this.agv = agv;
     this.mqttService = new MqttService(this.agv.id);
     this.robotState = new RobotState(this.agv.id);
-    this.mqttService.onMessage((topic: string, payload: ArrayBuffer | Uint8Array | string) => {
+    this.mqttService.onMessage((topic: string, payload: ArrayBuffer | Uint8Array | string) : void => {
       let message: string;
 
       if (payload instanceof Uint8Array || payload instanceof ArrayBuffer) {
@@ -54,8 +54,8 @@ export default class AGVService {
       console.log(`Unknown Message: ${msg}`);
     }
     else {
-      switch (msg.CmdId) {
-        case EnCommandId.Gq: {
+      switch (msg.Cmd) {
+        case EnCommandId.GQ: {
           const gq = msg as ResponseGQ;
           this.robotState.X = gq.X;
           this.robotState.Y = gq.Y;
@@ -78,7 +78,8 @@ export default class AGVService {
 
       switch (result) {
         case EnCommandId.GQ:
-          return json as ResponseGQ; 
+          //return json as ResponseGQ; // [X] : TypeScript는 타입 캐스팅(as ResponseGQ)만으로 해당 타입을 보장하지 않음
+          return Object.assign(new ResponseGQ(), json);
         default:
           break;
       }

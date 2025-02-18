@@ -99,12 +99,12 @@ export class MqttService implements IMqttService {
     }
   }
 
-  onMessage(callback: (message: string) => void) {
+  onMessage(callback: (topic:string, message: string) => void) {
     this.messageCallback = callback;
 
     if (this.mqttClient && this._connected.value) {
       this.mqttClient.on('message', (topic, message) => {
-        callback(message.toString()); 
+        callback(topic, message.toString()); 
       });
     }
   }
