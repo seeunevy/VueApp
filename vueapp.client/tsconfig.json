@@ -1,0 +1,42 @@
+//{
+//  "files": [],
+//  "references": [
+//    {
+//      "path": "./tsconfig.node.json"
+//    },
+//    {
+//      "path": "./tsconfig.app.json"
+//    }
+//  ]
+//}
+
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": false,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [ "src/*" ]
+    }
+  },
+  "include": [
+    "vite.config.ts", // Vite 설정 파일을 포함
+    "src/**/*.ts", // 프로젝트 소스 코드
+    "src/**/*.d.ts" // 타입 정의 파일
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ]
+}

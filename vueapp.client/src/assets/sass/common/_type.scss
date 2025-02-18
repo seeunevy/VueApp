@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /*scrollbar-width: none;*/
+}
+
+body {
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  font-display: swap;
+  background: $light-color;
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+pre {
+  background-color: $white-color;
+  color: $dark-color;
+  max-width: 100%;
+}
+
+.emoji {
+  font-size: 100px;
+  line-height: 1.4em;
+}
+
+button {
+  cursor: pointer;
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+input {
+  font-size: 15px;
+  color: #222222;
+  border: none;
+  border-bottom: solid #aaaaaa 1px;
+  position: relative;
+  background: none;
+}
